@@ -11,5 +11,5 @@ public:
     CubicCurve(QWidget *parent = Q_NULLPTR);
 
 private:
-    Ui::CubicCurveClass ui;
+    Ui::CubicCurveClass m_ui;
 };
