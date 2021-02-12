@@ -22,6 +22,7 @@ void ChartView::mousePressEvent(QMouseEvent * event)
 		break;
 	case POINT:
 		drawPoint(event->pos());
+		break;
 	case COUNT:
 		break;
 	default:
