@@ -25,5 +25,8 @@ protected:
 	void mousePressEvent(QMouseEvent *event) override;
 
 private:
+	void drawPoint(const QPoint& pos);
+
+private:
 	MouseMode m_mode;
 };
