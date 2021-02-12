@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QtCharts::QChartView" name="graphicsView"/>
+     <widget class="ChartView" name="graphicsView"/>
     </item>
    </layout>
   </widget>
@@ -37,6 +37,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNone"/>
    <addaction name="actionPoint"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -48,13 +49,24 @@
     <string>Point</string>
    </property>
   </action>
+  <action name="actionNone">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>None</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QtCharts::QChartView</class>
+   <class>ChartView</class>
    <extends>QGraphicsView</extends>
-   <header location="global">QChartView</header>
+   <header>ChartView.h</header>
   </customwidget>
  </customwidgets>
  <resources>

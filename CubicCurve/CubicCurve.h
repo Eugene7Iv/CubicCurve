@@ -10,6 +10,17 @@ class CubicCurve : public QMainWindow
 public:
     CubicCurve(QWidget *parent = Q_NULLPTR);
 
+signals:
+	void modeChanged(MouseMode mode);
+
+protected:
+	void onPointMode();
+	void onNoneMode();
+
+	void updateActions();
+
 private:
     Ui::CubicCurveClass m_ui;
+
+	MouseMode m_mode;
 };
