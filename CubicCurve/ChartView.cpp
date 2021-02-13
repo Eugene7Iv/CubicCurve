@@ -1,8 +1,27 @@
 #include "ChartView.h"
+#include <QScatterSeries>
+#include <QValueAxis>
 
 ChartView::ChartView(QWidget *parent)
 	: QChartView(parent)
 {
+	QScatterSeries *series = new QScatterSeries;
+	series->setMarkerSize(10);
+
+	chart()->addSeries(series);
+	chart()->legend()->hide();
+
+	QValueAxis *axisX = new QValueAxis;
+	axisX->setRange(-5, 5);
+	axisX->setTickCount(11);
+	axisX->setLabelFormat("%.2f");
+	chart()->setAxisX(axisX, series);
+
+	QValueAxis *axisY = new QValueAxis;
+	axisY->setRange(-5, 5);
+	axisY->setTickCount(11);
+	axisY->setLabelFormat("%.2f");
+	chart()->setAxisY(axisY, series);
 }
 
 ChartView::~ChartView()
@@ -34,13 +53,8 @@ void ChartView::mousePressEvent(QMouseEvent * event)
 
 void ChartView::drawPoint(const QPoint & pos)
 {
-	QGraphicsEllipseItem* item = new QGraphicsEllipseItem(QRectF(-3, -3, 6, 6));
-	const QColor color(255, 0, 0, 255);
-	item->setZValue(100);
-	QPen pen(color);
-	pen.setWidth(3);
-	item->setBrush(color);
-	item->setPen(pen);
-	scene()->addItem(item);
-	item->setPos(pos);
+	auto chartPos = chart()->mapToValue(pos);
+	auto* scatterSeries = static_cast<QScatterSeries*>(chart()->series()[0]);
+	if (scatterSeries)
+		scatterSeries->append(chartPos);
 }
