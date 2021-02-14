@@ -39,7 +39,7 @@
    </attribute>
    <addaction name="actionNone"/>
    <addaction name="actionPoint"/>
-   <addaction name="actionParabola"/>
+   <addaction name="actionLinear"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPoint">
@@ -61,12 +61,12 @@
     <string>None</string>
    </property>
   </action>
-  <action name="actionParabola">
+  <action name="actionLinear">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Parabola</string>
+    <string>Linear</string>
    </property>
   </action>
  </widget>

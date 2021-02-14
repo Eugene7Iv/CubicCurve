@@ -22,6 +22,9 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Functions">
+      <UniqueIdentifier>{aa7897c9-e8b9-42c6-bf20-3c24f980a8ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="CubicCurve.qrc">
@@ -45,10 +48,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Function.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Linear.cpp">
+      <Filter>Functions</Filter>
     </ClCompile>
     <ClCompile Include="Parabola.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Functions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,11 +63,14 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Function.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Parabola.h">
-      <Filter>Header Files</Filter>
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Linear.h">
+      <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>Functions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

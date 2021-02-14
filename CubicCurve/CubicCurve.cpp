@@ -9,7 +9,7 @@ CubicCurve::CubicCurve(QWidget *parent) : QMainWindow(parent), m_mode{NONE}
 
 	connect(m_ui.actionPoint, &QAction::triggered, this, &CubicCurve::onPointMode);
 	connect(m_ui.actionNone, &QAction::triggered, this, &CubicCurve::onNoneMode);
-	connect(m_ui.actionParabola, &QAction::triggered, this, &CubicCurve::onParabolaMode);
+	connect(m_ui.actionLinear, &QAction::triggered, this, &CubicCurve::onLinearMode);
 	connect(this, &CubicCurve::modeChanged, m_ui.graphicsView, &ChartView::onModeChanged);
 
 	updateActions();
@@ -22,9 +22,9 @@ void CubicCurve::onPointMode()
 	updateActions();
 }
 
-void CubicCurve::onParabolaMode()
+void CubicCurve::onLinearMode()
 {
-	m_mode = PARABOLA;
+	m_mode = LINEAR;
 	emit modeChanged(m_mode);
 	updateActions();
 }
@@ -40,5 +40,5 @@ void CubicCurve::updateActions()
 {
 	m_ui.actionPoint->setChecked(m_mode == POINT);
 	m_ui.actionNone->setChecked(m_mode == NONE);
-	m_ui.actionParabola->setChecked(m_mode == PARABOLA);
+	m_ui.actionLinear->setChecked(m_mode == LINEAR);
 }

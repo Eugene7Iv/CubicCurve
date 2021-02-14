@@ -10,7 +10,7 @@ enum MouseMode
 {
 	NONE,
 	POINT,
-	PARABOLA,
+	LINEAR,
 	COUNT
 };
 
@@ -29,6 +29,7 @@ protected:
 
 private:
 	void drawPoint(const QPoint& pos);
+	void drawLine(const QPoint& pos);
 
 private:
 	MouseMode m_mode;

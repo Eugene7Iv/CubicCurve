@@ -1,6 +1,8 @@
 #include "ChartView.h"
 #include <QScatterSeries>
+#include <QLineSeries>
 #include <QValueAxis>
+#include "Linear.h"
 
 ChartView::ChartView(QWidget *parent)
 	: QChartView(parent)
@@ -52,6 +54,9 @@ void ChartView::mousePressEvent(QMouseEvent * event)
 	case POINT:
 		drawPoint(event->pos());
 		break;
+	case LINEAR:
+		drawLine(event->pos());
+		break;
 	case COUNT:
 		break;
 	default:
@@ -66,8 +71,29 @@ void ChartView::drawPoint(const QPoint & pos)
 	auto chartPos = chart()->mapToValue(pos);
 	if (m_scatterSeries)
 		m_scatterSeries->append(chartPos);
+}
 
-	m_splineSeries->append(1,1);
-	m_splineSeries->append(2,4);
-	m_splineSeries->append(-2, 4);
+void ChartView::drawLine(const QPoint & pos)
+{
+	static PointCoords coords;
+	auto chartPos = chart()->mapToValue(pos);
+	drawPoint(pos);
+	coords.push_back({ chartPos.x(), chartPos.y() });
+	if (coords.size() == 2)
+	{
+		Linear f;
+		f.resolveParams(coords);
+		double minX = static_cast<QValueAxis*>(chart()->axisX())->min();
+		double maxX = static_cast<QValueAxis*>(chart()->axisX())->max();
+
+		QLineSeries* lineSeries = new QLineSeries;
+		chart()->addSeries(lineSeries);
+		lineSeries->attachAxis(chart()->axisX());
+		lineSeries->attachAxis(chart()->axisY());
+
+		lineSeries->append(minX, f.valueAt(minX));
+		lineSeries->append(maxX, f.valueAt(maxX));
+		coords.resize(0);
+	}
+	
 }
