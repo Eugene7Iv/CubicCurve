@@ -15,6 +15,7 @@ signals:
 
 protected:
 	void onPointMode();
+	void onParabolaMode();
 	void onNoneMode();
 
 	void updateActions();

@@ -8,6 +8,7 @@ enum MouseMode
 {
 	NONE,
 	POINT,
+	PARABOLA,
 	COUNT
 };
 

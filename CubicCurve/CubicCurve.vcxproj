@@ -86,15 +86,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Parabola.cpp" />
     <QtRcc Include="CubicCurve.qrc" />
     <QtUic Include="CubicCurve.ui" />
     <QtMoc Include="CubicCurve.h" />
     <ClCompile Include="ChartView.cpp" />
     <ClCompile Include="CubicCurve.cpp" />
+    <ClCompile Include="Function.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChartView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Function.h" />
+    <ClInclude Include="Parabola.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
