@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QChartView>
+#include <QScatterSeries>
+#include <QSplineSeries>
 
 using namespace QtCharts;
 
@@ -30,4 +32,6 @@ private:
 
 private:
 	MouseMode m_mode;
+	QScatterSeries* m_scatterSeries;
+	QSplineSeries* m_splineSeries;
 };

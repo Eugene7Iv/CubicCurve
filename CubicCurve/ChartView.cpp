@@ -5,23 +5,33 @@
 ChartView::ChartView(QWidget *parent)
 	: QChartView(parent)
 {
-	QScatterSeries *series = new QScatterSeries;
-	series->setMarkerSize(10);
+	m_scatterSeries = new QScatterSeries;
+	m_scatterSeries->setMarkerSize(10);
 
-	chart()->addSeries(series);
+	m_splineSeries = new QSplineSeries;
+
+	//it is important firstly add series to chart then attach axis to series
+	chart()->addSeries(m_scatterSeries);
+	chart()->addSeries(m_splineSeries);
 	chart()->legend()->hide();
 
 	QValueAxis *axisX = new QValueAxis;
 	axisX->setRange(-5, 5);
 	axisX->setTickCount(11);
 	axisX->setLabelFormat("%.2f");
-	chart()->setAxisX(axisX, series);
+	chart()->setAxisX(axisX);
 
 	QValueAxis *axisY = new QValueAxis;
 	axisY->setRange(-5, 5);
 	axisY->setTickCount(11);
 	axisY->setLabelFormat("%.2f");
-	chart()->setAxisY(axisY, series);
+	chart()->setAxisY(axisY);
+
+	m_scatterSeries->attachAxis(axisX);
+	m_scatterSeries->attachAxis(axisY);
+
+	m_splineSeries->attachAxis(axisX);
+	m_splineSeries->attachAxis(axisY);
 }
 
 ChartView::~ChartView()
@@ -54,7 +64,10 @@ void ChartView::mousePressEvent(QMouseEvent * event)
 void ChartView::drawPoint(const QPoint & pos)
 {
 	auto chartPos = chart()->mapToValue(pos);
-	auto* scatterSeries = static_cast<QScatterSeries*>(chart()->series()[0]);
-	if (scatterSeries)
-		scatterSeries->append(chartPos);
+	if (m_scatterSeries)
+		m_scatterSeries->append(chartPos);
+
+	m_splineSeries->append(1,1);
+	m_splineSeries->append(2,4);
+	m_splineSeries->append(-2, 4);
 }
