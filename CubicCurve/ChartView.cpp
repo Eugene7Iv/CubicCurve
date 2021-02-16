@@ -45,6 +45,12 @@ void ChartView::onModeChanged(MouseMode mode)
 	m_mode = mode;
 }
 
+void ChartView::clear()
+{
+	for (auto series : chart()->series())
+		static_cast<QXYSeries*>(series)->clear();
+}
+
 void ChartView::mousePressEvent(QMouseEvent * event)
 {
 	switch (m_mode)
@@ -95,5 +101,4 @@ void ChartView::drawLine(const QPoint & pos)
 		lineSeries->append(maxX, f.valueAt(maxX));
 		coords.resize(0);
 	}
-	
 }

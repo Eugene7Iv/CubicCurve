@@ -40,6 +40,8 @@
    <addaction name="actionNone"/>
    <addaction name="actionPoint"/>
    <addaction name="actionLinear"/>
+   <addaction name="actionCubic"/>
+   <addaction name="actionClear"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPoint">
@@ -67,6 +69,19 @@
    </property>
    <property name="text">
     <string>Linear</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="actionCubic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Cubic</string>
    </property>
   </action>
  </widget>

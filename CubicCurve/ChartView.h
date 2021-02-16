@@ -11,6 +11,7 @@ enum MouseMode
 	NONE,
 	POINT,
 	LINEAR,
+	CUBIC,
 	COUNT
 };
 
@@ -23,6 +24,7 @@ public:
 	~ChartView();
 
 	void onModeChanged(MouseMode mode);
+	void clear();
 
 protected:
 	void mousePressEvent(QMouseEvent *event) override;

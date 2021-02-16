@@ -14,9 +14,10 @@ signals:
 	void modeChanged(MouseMode mode);
 
 protected:
+	void onNoneMode();
 	void onPointMode();
 	void onLinearMode();
-	void onNoneMode();
+	void onCubicMode();
 
 	void updateActions();
 
