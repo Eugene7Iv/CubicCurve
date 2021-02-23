@@ -3,10 +3,13 @@
 #include <QLineSeries>
 #include <QValueAxis>
 #include "Linear.h"
+#include "Cubic.h"
 
 ChartView::ChartView(QWidget *parent)
 	: QChartView(parent)
 {
+	setRenderHint(QPainter::Antialiasing); // for more smooth spline
+
 	m_scatterSeries = new QScatterSeries;
 	m_scatterSeries->setMarkerSize(10);
 
@@ -17,11 +20,17 @@ ChartView::ChartView(QWidget *parent)
 	chart()->addSeries(m_splineSeries);
 	chart()->legend()->hide();
 
+	xMin = -5;
+	xMax = 5;
+
 	QValueAxis *axisX = new QValueAxis;
-	axisX->setRange(-5, 5);
+	axisX->setRange(xMin, xMax);
 	axisX->setTickCount(11);
 	axisX->setLabelFormat("%.2f");
 	chart()->setAxisX(axisX);
+
+	yMin = -5;
+	yMax = 5;
 
 	QValueAxis *axisY = new QValueAxis;
 	axisY->setRange(-5, 5);
@@ -63,6 +72,9 @@ void ChartView::mousePressEvent(QMouseEvent * event)
 	case LINEAR:
 		drawLine(event->pos());
 		break;
+	case CUBIC:
+		drawCubic();
+		break;
 	case COUNT:
 		break;
 	default:
@@ -100,5 +112,46 @@ void ChartView::drawLine(const QPoint & pos)
 		lineSeries->append(minX, f.valueAt(minX));
 		lineSeries->append(maxX, f.valueAt(maxX));
 		coords.resize(0);
+	}
+}
+
+void ChartView::drawCubic()
+{
+	QSplineSeries* s = new QSplineSeries;
+	chart()->addSeries(s);
+	s->attachAxis(chart()->axisX());
+	s->attachAxis(chart()->axisY());
+
+	Cubic f;
+	std::vector<double> X;
+	X.push_back(f.domain().first);
+	for (double x = xMin; x <= xMax; x = x + 1e-2)
+	{	
+		if (f.checkDomain(x))
+			X.push_back(x);
+	}
+
+	for (auto rIt = X.rbegin(); rIt < X.rend(); rIt++)
+	{
+		auto x = *rIt;
+		auto y = f.valueAt(x);
+		if (x >= 0)
+		{
+			s->append(x, y.first);
+		}
+		else
+		{
+			s->append(x, y.second);
+		}
+	}
+	X.erase(X.begin());
+	for (auto it = X.begin(); it < X.end(); it++)
+	{
+		auto x = *it;
+		auto y = f.valueAt(x);
+		if (x <= 0)
+			s->append(x, y.first);
+		else
+			s->append(x, y.second);
 	}
 }

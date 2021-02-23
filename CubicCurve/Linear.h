@@ -1,13 +1,13 @@
 #pragma once
 #include "Function.h"
+
 class Linear :
-	public Function
+	public Function<double>
 {
 public:
 	Linear();
-	~Linear();
 
-	virtual double valueAt(double x) const;
-	virtual bool resolveParams(const PointCoords& points);
+	double valueAt(double x) const override;
+	bool resolveParams(const PointCoords& points) override;
 };
 

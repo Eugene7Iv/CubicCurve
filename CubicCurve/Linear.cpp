@@ -2,12 +2,7 @@
 
 
 
-Linear::Linear() : Function(2)
-{
-}
-
-
-Linear::~Linear()
+Linear::Linear() : Function<double>(2)
 {
 }
 

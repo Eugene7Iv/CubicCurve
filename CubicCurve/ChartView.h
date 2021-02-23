@@ -32,9 +32,12 @@ protected:
 private:
 	void drawPoint(const QPoint& pos);
 	void drawLine(const QPoint& pos);
+	void drawCubic();
 
 private:
 	MouseMode m_mode;
 	QScatterSeries* m_scatterSeries;
 	QSplineSeries* m_splineSeries;
+
+	double xMin, xMax, yMin, yMax;
 };
