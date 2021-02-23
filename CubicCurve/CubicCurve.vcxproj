@@ -87,6 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cubic.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Linear.cpp" />
     <QtRcc Include="CubicCurve.qrc" />
     <QtUic Include="CubicCurve.ui" />
@@ -102,6 +103,7 @@
   <ItemGroup>
     <ClInclude Include="Cubic.h" />
     <ClInclude Include="Function.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Linear.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

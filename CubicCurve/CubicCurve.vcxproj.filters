@@ -56,6 +56,9 @@
     <ClCompile Include="Cubic.cpp">
       <Filter>Functions</Filter>
     </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChartView.h">
@@ -71,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="Cubic.h">
       <Filter>Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
