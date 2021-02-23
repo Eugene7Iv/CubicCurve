@@ -123,6 +123,19 @@ void ChartView::drawCubic()
 	s->attachAxis(chart()->axisY());
 
 	Cubic f;
+	//asymptote
+	QLineSeries* lineSeries = new QLineSeries;
+	QPen pen = lineSeries->pen();
+	pen.setWidth(1);
+	pen.setStyle(Qt::DashLine);
+	lineSeries->setPen(pen);
+	chart()->addSeries(lineSeries);
+	lineSeries->attachAxis(chart()->axisX());
+	lineSeries->attachAxis(chart()->axisY());
+
+	lineSeries->append(f.asymptote(), yMax);
+	lineSeries->append(f.asymptote(), yMin);
+
 	std::vector<double> X;
 	X.push_back(f.domain().first);
 	for (double x = xMin; x <= xMax; x = x + 1e-2)
