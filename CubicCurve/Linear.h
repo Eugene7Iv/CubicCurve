@@ -2,12 +2,12 @@
 #include "Function.h"
 
 class Linear :
-	public Function<double>
+	public Function
 {
 public:
 	Linear();
 
-	double valueAt(double x) const override;
+	std::vector<double> valueAt(double x) const override;
 	bool resolveParams(const PointCoords& points) override;
 };
 

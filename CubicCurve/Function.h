@@ -3,7 +3,7 @@
 
 using PointCoords = std::vector<std::pair<double, double>>;
 
-template<typename T>
+
 class Function
 {
 public:
@@ -14,8 +14,9 @@ public:
 	}
 	virtual ~Function(){}
 
-	virtual T valueAt(double x) const = 0;
+	virtual std::vector<double> valueAt(double x) const = 0;
 	virtual bool resolveParams(const PointCoords& points) = 0;
+	virtual std::pair<double, double> domain() const;
 	virtual bool checkDomain(double x) const
 	{
 		return false;

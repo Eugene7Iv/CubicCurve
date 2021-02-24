@@ -109,8 +109,8 @@ void ChartView::drawLine(const QPoint & pos)
 		lineSeries->attachAxis(chart()->axisX());
 		lineSeries->attachAxis(chart()->axisY());
 
-		lineSeries->append(minX, f.valueAt(minX));
-		lineSeries->append(maxX, f.valueAt(maxX));
+		lineSeries->append(minX, f.valueAt(minX).at(0));
+		lineSeries->append(maxX, f.valueAt(maxX).at(1));
 		coords.resize(0);
 	}
 }
@@ -150,11 +150,11 @@ void ChartView::drawCubic()
 		auto y = f.valueAt(x);
 		if (x >= 0)
 		{
-			s->append(x, y.first);
+			s->append(x, y.at(0));
 		}
 		else
 		{
-			s->append(x, y.second);
+			s->append(x, y.at(1));
 		}
 	}
 	X.erase(X.begin());
@@ -163,8 +163,8 @@ void ChartView::drawCubic()
 		auto x = *it;
 		auto y = f.valueAt(x);
 		if (x <= 0)
-			s->append(x, y.first);
+			s->append(x, y.at(0));
 		else
-			s->append(x, y.second);
+			s->append(x, y.at(1));
 	}
 }

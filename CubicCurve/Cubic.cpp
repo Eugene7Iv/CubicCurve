@@ -2,7 +2,7 @@
 
 
 
-Cubic::Cubic() : Function<std::pair<double, double>>(3)
+Cubic::Cubic() : Function(3)
 {
 	setV(1);
 	setQ(1);
@@ -11,9 +11,9 @@ Cubic::Cubic() : Function<std::pair<double, double>>(3)
 	update();
 }
 
-std::pair<double, double> Cubic::valueAt(double x) const
+std::vector<double> Cubic::valueAt(double x) const
 {
-	std::pair<double, double> ret;
+	std::vector<double> ret;
 
 	if (!checkDomain(x))
 		return ret;

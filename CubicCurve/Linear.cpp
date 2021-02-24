@@ -2,17 +2,17 @@
 
 
 
-Linear::Linear() : Function<double>(2)
+Linear::Linear() : Function(2)
 {
 }
 
-double Linear::valueAt(double x) const
+std::vector<double> Linear::valueAt(double x) const
 {
 	double k = m_params[0];
 	double b = m_params[1];
 
-	double res = k * x + b;
-	return res;
+	std::vector<double> ret{ k * x + b };
+	return ret;
 }
 
 bool Linear::resolveParams(const PointCoords & points)
