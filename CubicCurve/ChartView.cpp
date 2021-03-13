@@ -110,7 +110,7 @@ void ChartView::drawLine(const QPoint & pos)
 		lineSeries->attachAxis(chart()->axisY());
 
 		lineSeries->append(minX, f.valueAt(minX).at(0));
-		lineSeries->append(maxX, f.valueAt(maxX).at(1));
+		lineSeries->append(maxX, f.valueAt(maxX).at(0));
 		coords.resize(0);
 	}
 }
