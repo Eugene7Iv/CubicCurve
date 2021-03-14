@@ -4,6 +4,7 @@
 #include <QValueAxis>
 #include "Linear.h"
 #include "Cubic.h"
+#include "CubicGraph.h"
 
 ChartView::ChartView(QWidget *parent)
 	: QChartView(parent)
@@ -43,10 +44,12 @@ ChartView::ChartView(QWidget *parent)
 
 	m_splineSeries->attachAxis(axisX);
 	m_splineSeries->attachAxis(axisY);
+	m_graph = new CubicGraph(chart());
 }
 
 ChartView::~ChartView()
 {
+	delete m_graph;
 }
 
 void ChartView::onModeChanged(MouseMode mode)
@@ -58,6 +61,21 @@ void ChartView::clear()
 {
 	for (auto series : chart()->series())
 		static_cast<QXYSeries*>(series)->clear();
+}
+
+void ChartView::updateV(double v)
+{
+	m_graph->updateV(v);
+}
+
+void ChartView::updateQ(double q)
+{
+	m_graph->updateQ(q);
+}
+
+void ChartView::updateK(double k)
+{
+	m_graph->updateK(k);
 }
 
 void ChartView::mousePressEvent(QMouseEvent * event)
@@ -72,9 +90,9 @@ void ChartView::mousePressEvent(QMouseEvent * event)
 	case LINEAR:
 		drawLine(event->pos());
 		break;
-	case CUBIC:
-		drawCubic();
-		break;
+	//case CUBIC:
+	//	drawCubic();
+	//	break;
 	case COUNT:
 		break;
 	default:
@@ -136,35 +154,6 @@ void ChartView::drawCubic()
 	lineSeries->append(f.asymptote(), yMax);
 	lineSeries->append(f.asymptote(), yMin);
 
-	std::vector<double> X;
-	X.push_back(f.domain().first);
-	for (double x = xMin; x <= xMax; x = x + 1e-2)
-	{	
-		if (f.checkDomain(x))
-			X.push_back(x);
-	}
-
-	for (auto rIt = X.rbegin(); rIt < X.rend(); rIt++)
-	{
-		auto x = *rIt;
-		auto y = f.valueAt(x);
-		if (x >= 0)
-		{
-			s->append(x, y.at(0));
-		}
-		else
-		{
-			s->append(x, y.at(1));
-		}
-	}
-	X.erase(X.begin());
-	for (auto it = X.begin(); it < X.end(); it++)
-	{
-		auto x = *it;
-		auto y = f.valueAt(x);
-		if (x <= 0)
-			s->append(x, y.at(0));
-		else
-			s->append(x, y.at(1));
-	}
+	CubicGraph* graph = new CubicGraph(chart());
+	graph->draw();
 }

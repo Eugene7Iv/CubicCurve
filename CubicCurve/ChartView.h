@@ -3,6 +3,7 @@
 #include <QChartView>
 #include <QScatterSeries>
 #include <QSplineSeries>
+#include "CubicGraph.h"
 
 using namespace QtCharts;
 
@@ -26,6 +27,10 @@ public:
 	void onModeChanged(MouseMode mode);
 	void clear();
 
+	void updateV(double v);
+	void updateQ(double q);
+	void updateK(double k);
+
 protected:
 	void mousePressEvent(QMouseEvent *event) override;
 
@@ -38,6 +43,7 @@ private:
 	MouseMode m_mode;
 	QScatterSeries* m_scatterSeries;
 	QSplineSeries* m_splineSeries;
+	CubicGraph* m_graph;
 
 	double xMin, xMax, yMin, yMax;
 };

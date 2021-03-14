@@ -5,9 +5,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -24,6 +32,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -87,8 +101,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cubic.cpp" />
+    <ClCompile Include="CubicGraph.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Linear.cpp" />
+    <ClCompile Include="ParamsWidget.cpp" />
     <QtRcc Include="CubicCurve.qrc" />
     <QtUic Include="CubicCurve.ui" />
     <QtMoc Include="CubicCurve.h" />
@@ -96,15 +112,18 @@
     <ClCompile Include="CubicCurve.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="ParamsWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ChartView.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cubic.h" />
+    <ClInclude Include="CubicGraph.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Linear.h" />
+    <QtMoc Include="ParamsWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

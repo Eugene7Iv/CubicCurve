@@ -1,6 +1,8 @@
 #include "Graph.h"
 
-Graph::Graph(QChart * chart, QXYSeries * series) : m_series{series}
+Graph::Graph(QChart * chart, QXYSeries * series, Function* f) : 
+	m_series{series},
+	m_f{f}
 {
 		chart->addSeries(m_series);
 		m_series->attachAxis(chart->axisX());
@@ -9,4 +11,11 @@ Graph::Graph(QChart * chart, QXYSeries * series) : m_series{series}
 
 Graph::~Graph()
 {
+	delete m_f;
+}
+
+void Graph::update()
+{
+	m_series->clear();
+	draw();
 }

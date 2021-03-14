@@ -8,11 +8,13 @@ using namespace QtCharts;
 class Graph
 {
 public:
-	Graph(QChart* chart, QXYSeries* series);
+	Graph(QChart* chart, QXYSeries* series, Function* f);
 	virtual ~Graph();
-	virtual void generateSeries() = 0;
+	virtual void draw() = 0;
+	void update();
 
-private:
+protected:
 	QXYSeries* m_series;
+	Function* m_f;
 };
 

@@ -13,7 +13,7 @@ public:
 signals:
 	void modeChanged(MouseMode mode);
 
-protected:
+private:
 	void onNoneMode();
 	void onPointMode();
 	void onLinearMode();
