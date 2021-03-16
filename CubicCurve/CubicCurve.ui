@@ -77,6 +77,10 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="CubicCurve.qrc">
+     <normaloff>:/CubicCurve/none.png</normaloff>:/CubicCurve/none.png</iconset>
+   </property>
    <property name="text">
     <string>None</string>
    </property>

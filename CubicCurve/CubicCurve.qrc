@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/CubicCurve">
+    <file>none.png</file>
     <file alias="reset">reset.png</file>
     <file alias="clear">eraser.png</file>
     <file alias="cubic">cubic.PNG</file>
