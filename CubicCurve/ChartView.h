@@ -10,10 +10,7 @@ using namespace QtCharts;
 enum MouseMode
 {
 	NONE,
-	POINT,
-	LINEAR,
 	CUBIC,
-	COUNT
 };
 
 class ChartView : public QChartView
@@ -32,18 +29,8 @@ public:
 	void updateK(double k, ParamsMode mode);
 	void onDraw(double k, double v, double q, ParamsMode mode);
 
-protected:
-	void mousePressEvent(QMouseEvent *event) override;
-
-private:
-	void drawPoint(const QPoint& pos);
-	void drawLine(const QPoint& pos);
-	void drawCubic();
-
 private:
 	MouseMode m_mode;
-	QScatterSeries* m_scatterSeries;
-	QSplineSeries* m_splineSeries;
 	CubicGraph* m_graph;
 
 	double xMin, xMax, yMin, yMax;
