@@ -8,7 +8,7 @@ CubicCurve::CubicCurve(QWidget *parent) : QMainWindow(parent), m_mode{NONE}
     m_ui.setupUi(this);
 
 	connect(m_ui.actionClear, &QAction::triggered, m_ui.graphicsView, &ChartView::clear);
-	connect(this, &CubicCurve::modeChanged, m_ui.graphicsView, &ChartView::onModeChanged);
+	connect(m_ui.actionResetZoom, &QAction::triggered, m_ui.graphicsView, &ChartView::resetZoom);
 
 	connect(m_ui.actionNone, &QAction::triggered, this, &CubicCurve::onNoneMode);
 	connect(m_ui.actionCubic, &QAction::triggered, this, &CubicCurve::onCubicMode);
@@ -22,7 +22,6 @@ CubicCurve::CubicCurve(QWidget *parent) : QMainWindow(parent), m_mode{NONE}
 void CubicCurve::onNoneMode()
 {
 	m_mode = NONE;
-	emit modeChanged(m_mode);
 	updateActions();
 	m_ui.paramsWidget->hide();
 }
@@ -30,7 +29,6 @@ void CubicCurve::onNoneMode()
 void CubicCurve::onCubicMode()
 {
 	m_mode = CUBIC;
-	emit modeChanged(m_mode);
 	updateActions();
 	m_ui.paramsWidget->show();
 }

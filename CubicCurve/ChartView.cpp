@@ -38,15 +38,11 @@ ChartView::~ChartView()
 	delete m_graph;
 }
 
-void ChartView::onModeChanged(MouseMode mode)
-{
-	m_mode = mode;
-}
-
 void ChartView::clear()
 {
 	for (auto series : chart()->series())
 		static_cast<QXYSeries*>(series)->clear();
+	resetZoom();
 }
 
 void ChartView::updateV(double v, ParamsMode mode)
@@ -70,4 +66,20 @@ void ChartView::onDraw(double k, double v, double q, ParamsMode mode)
 	updateV(v, mode);
 	updateQ(q, mode);
 	m_graph->update();
+}
+
+void ChartView::resetZoom()
+{
+	chart()->zoomReset();
+}
+
+void ChartView::wheelEvent(QWheelEvent * event)
+{
+	auto d = event->angleDelta().y();
+	if (d > 0)
+		chart()->zoomIn();
+	else
+		chart()->zoomOut();
+
+	__super::wheelEvent(event);
 }

@@ -2,7 +2,7 @@
 #include <QDoubleValidator>
 
 ParamsWidget::ParamsWidget(QWidget *parent)
-	: QWidget(parent), m_mode{ParamsMode::Algebraic}
+	: QWidget(parent), m_mode{ParamsMode::Geometry}
 {
 	m_ui.setupUi(this);
 	QDoubleValidator* validator = new QDoubleValidator();
@@ -13,9 +13,11 @@ ParamsWidget::ParamsWidget(QWidget *parent)
 	connect(m_ui.changeModeButton, &QPushButton::clicked, this, &ParamsWidget::onParamModeChange);
 	connect(m_ui.drawButton, &QPushButton::clicked, this, &ParamsWidget::onDrawButton);
 
-	m_ui.k_lineEdit->setText("1");
+	m_ui.k_lineEdit->setText("45");
 	m_ui.q_lineEdit->setText("1");
 	m_ui.v_lineEdit->setText("1");
+
+	updateLabels();
 }
 
 ParamsWidget::~ParamsWidget()
@@ -44,7 +46,7 @@ double ParamsWidget::q()
 
 void ParamsWidget::onDrawButton()
 {
-	emit draw(k(), v(), q(), m_mode);
+	emit draw(k(), v(), q(), paramMode());
 }
 
 void ParamsWidget::updateLabels()

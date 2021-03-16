@@ -21,7 +21,6 @@ public:
 	ChartView(QWidget *parent);
 	~ChartView();
 
-	void onModeChanged(MouseMode mode);
 	void clear();
 
 	void updateV(double v, ParamsMode mode);
@@ -29,8 +28,12 @@ public:
 	void updateK(double k, ParamsMode mode);
 	void onDraw(double k, double v, double q, ParamsMode mode);
 
+	void resetZoom();
+	
+protected:
+	void wheelEvent(QWheelEvent *event) override;
+
 private:
-	MouseMode m_mode;
 	CubicGraph* m_graph;
 
 	double xMin, xMax, yMin, yMax;
