@@ -11,9 +11,6 @@ ParamsWidget::ParamsWidget(QWidget *parent)
 	m_ui.v_lineEdit->setValidator(validator);
 
 	connect(m_ui.changeModeButton, &QPushButton::clicked, this, &ParamsWidget::onParamModeChange);
-	connect(m_ui.k_lineEdit, &QLineEdit::editingFinished, this, &ParamsWidget::onDrawButton);
-	connect(m_ui.v_lineEdit, &QLineEdit::editingFinished, this, &ParamsWidget::onDrawButton);
-	connect(m_ui.q_lineEdit, &QLineEdit::editingFinished, this, &ParamsWidget::onDrawButton);
 	connect(m_ui.drawButton, &QPushButton::clicked, this, &ParamsWidget::onDrawButton);
 
 	m_ui.k_lineEdit->setText("1");
