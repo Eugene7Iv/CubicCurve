@@ -4,7 +4,7 @@
 #include "ui_ParamsWidget.h"
 #include "Shared.h"
 
-class ParamsWidget : public QWidget
+class ParamsWidget : public QFrame
 {
 	Q_OBJECT
 

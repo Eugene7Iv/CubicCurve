@@ -21,7 +21,14 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="ParamsWidget" name="paramsWidget" native="true"/>
+       <widget class="ParamsWidget" name="paramsWidget">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
       </item>
       <item>
        <spacer name="verticalSpacer">
@@ -102,7 +109,7 @@
   </customwidget>
   <customwidget>
    <class>ParamsWidget</class>
-   <extends>QWidget</extends>
+   <extends>QFrame</extends>
    <header>ParamsWidget.h</header>
    <container>1</container>
   </customwidget>

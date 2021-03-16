@@ -2,7 +2,7 @@
 #include <QDoubleValidator>
 
 ParamsWidget::ParamsWidget(QWidget *parent)
-	: QWidget(parent), m_mode{ParamsMode::Geometry}
+	: QFrame(parent), m_mode{ParamsMode::Geometry}
 {
 	m_ui.setupUi(this);
 	QDoubleValidator* validator = new QDoubleValidator();
