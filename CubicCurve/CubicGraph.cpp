@@ -33,7 +33,7 @@ void CubicGraph::draw()
 	std::vector<double> X;
 	auto domain = m_f->domain();
 	//X.push_back(m_f->domain().first);
-	for (double x = domain.first; x <= domain.second; x = x + 1e-2)
+	for (double x = domain.first; x <= domain.second - 1e-2; x = x + 1e-2)
 	{
 		//if (m_f->checkDomain(x))
 		X.push_back(x);

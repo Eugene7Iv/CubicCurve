@@ -16,11 +16,6 @@ public:
 
 	void draw() override;
 
-signals:
-	void k_Updated(double k);
-	void v_Updated(double v);
-	void q_Updated(double q);
-
 private:
 	inline Cubic* cubic();
 	inline const Cubic* cubic() const;
