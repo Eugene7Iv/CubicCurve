@@ -23,10 +23,10 @@
       <item>
        <widget class="ParamsWidget" name="paramsWidget">
         <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+         <enum>QFrame::Plain</enum>
         </property>
        </widget>
       </item>
