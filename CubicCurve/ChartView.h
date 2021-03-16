@@ -27,9 +27,10 @@ public:
 	void onModeChanged(MouseMode mode);
 	void clear();
 
-	void updateV(double v);
-	void updateQ(double q);
-	void updateK(double k);
+	void updateV(double v, ParamsMode mode);
+	void updateQ(double q, ParamsMode mode);
+	void updateK(double k, ParamsMode mode);
+	void onDraw(double k, double v, double q, ParamsMode mode);
 
 protected:
 	void mousePressEvent(QMouseEvent *event) override;

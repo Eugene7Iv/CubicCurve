@@ -2,7 +2,7 @@
 #include <QDoubleValidator>
 
 ParamsWidget::ParamsWidget(QWidget *parent)
-	: QWidget(parent)
+	: QWidget(parent), m_mode{ParamsMode::Algebraic}
 {
 	m_ui.setupUi(this);
 	QDoubleValidator* validator = new QDoubleValidator();
@@ -10,15 +10,11 @@ ParamsWidget::ParamsWidget(QWidget *parent)
 	m_ui.q_lineEdit->setValidator(validator);
 	m_ui.v_lineEdit->setValidator(validator);
 
-	connect(m_ui.k_lineEdit, &QLineEdit::editingFinished,[&](){
-		emit kChanged(m_ui.k_lineEdit->text().toDouble());
-	});	
-	connect(m_ui.q_lineEdit, &QLineEdit::editingFinished, [&]() {
-		emit qChanged(m_ui.q_lineEdit->text().toDouble());
-	});
-	connect(m_ui.v_lineEdit, &QLineEdit::editingFinished, [&]() {
-		emit vChanged(m_ui.v_lineEdit->text().toDouble());
-	});
+	connect(m_ui.changeModeButton, &QPushButton::clicked, this, &ParamsWidget::onParamModeChange);
+	connect(m_ui.k_lineEdit, &QLineEdit::editingFinished, this, &ParamsWidget::onDrawButton);
+	connect(m_ui.v_lineEdit, &QLineEdit::editingFinished, this, &ParamsWidget::onDrawButton);
+	connect(m_ui.q_lineEdit, &QLineEdit::editingFinished, this, &ParamsWidget::onDrawButton);
+	connect(m_ui.drawButton, &QPushButton::clicked, this, &ParamsWidget::onDrawButton);
 
 	m_ui.k_lineEdit->setText("1");
 	m_ui.q_lineEdit->setText("1");
@@ -27,4 +23,63 @@ ParamsWidget::ParamsWidget(QWidget *parent)
 
 ParamsWidget::~ParamsWidget()
 {
+}
+
+ParamsMode ParamsWidget::paramMode() const
+{
+	return m_mode;
+}
+
+double ParamsWidget::k()
+{
+	return m_ui.k_lineEdit->text().toDouble();
+}
+
+double ParamsWidget::v()
+{
+	return m_ui.v_lineEdit->text().toDouble();
+}
+
+double ParamsWidget::q()
+{
+	return m_ui.q_lineEdit->text().toDouble();
+}
+
+void ParamsWidget::onDrawButton()
+{
+	emit draw(k(), v(), q(), m_mode);
+}
+
+void ParamsWidget::updateLabels()
+{
+	QChar alpha{ 0xb1, 0x03 };
+	switch (m_mode)
+	{
+	case ParamsMode::Algebraic:
+		m_ui.k_label->setText("k");
+		m_ui.q_label->setText("q");
+		break;
+	case ParamsMode::Geometry:
+		m_ui.k_label->setText(alpha);
+		m_ui.q_label->setText("x");
+		break;
+	default:
+		break;
+	}
+}
+
+void ParamsWidget::onParamModeChange()
+{
+	switch (m_mode)
+	{
+	case ParamsMode::Algebraic:
+		m_mode = ParamsMode::Geometry;
+		break;
+	case ParamsMode::Geometry:
+		m_mode = ParamsMode::Algebraic;
+		break;
+	default:
+		break;
+	}
+	updateLabels();
 }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>94</width>
-    <height>94</height>
+    <height>124</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -84,6 +84,55 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="changeModeButton">
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="CubicCurve.qrc">
+           <normaloff>:/CubicCurve/changeMode</normaloff>:/CubicCurve/changeMode</iconset>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="drawButton">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="CubicCurve.qrc">
+           <normaloff>:/CubicCurve/draw</normaloff>:/CubicCurve/draw</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
     </layout>
@@ -91,6 +140,8 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="CubicCurve.qrc"/>
+ </resources>
  <connections/>
 </ui>

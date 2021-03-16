@@ -119,10 +119,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cubic.h" />
-    <ClInclude Include="CubicGraph.h" />
+    <QtMoc Include="CubicGraph.h" />
     <ClInclude Include="Function.h" />
-    <ClInclude Include="Graph.h" />
+    <QtMoc Include="Graph.h" />
     <ClInclude Include="Linear.h" />
+    <ClInclude Include="Shared.h" />
     <QtMoc Include="ParamsWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

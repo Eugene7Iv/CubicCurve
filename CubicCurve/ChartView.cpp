@@ -63,19 +63,27 @@ void ChartView::clear()
 		static_cast<QXYSeries*>(series)->clear();
 }
 
-void ChartView::updateV(double v)
+void ChartView::updateV(double v, ParamsMode mode)
 {
-	m_graph->updateV(v);
+	m_graph->updateV(v, mode);
 }
 
-void ChartView::updateQ(double q)
+void ChartView::updateQ(double q, ParamsMode mode)
 {
-	m_graph->updateQ(q);
+	m_graph->updateQ(q, mode);
 }
 
-void ChartView::updateK(double k)
+void ChartView::updateK(double k, ParamsMode mode)
 {
-	m_graph->updateK(k);
+	m_graph->updateK(k, mode);
+}
+
+void ChartView::onDraw(double k, double v, double q, ParamsMode mode)
+{
+	updateK(k, mode);
+	updateV(v, mode);
+	updateQ(q, mode);
+	m_graph->update();
 }
 
 void ChartView::mousePressEvent(QMouseEvent * event)

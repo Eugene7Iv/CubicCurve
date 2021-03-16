@@ -5,8 +5,9 @@
 
 using namespace QtCharts;
 
-class Graph
+class Graph : public QObject
 {
+	Q_OBJECT
 public:
 	Graph(QChart* chart, QXYSeries* series, Function* f);
 	virtual ~Graph();

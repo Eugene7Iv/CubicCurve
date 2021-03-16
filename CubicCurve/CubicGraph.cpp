@@ -10,29 +10,30 @@ CubicGraph::~CubicGraph()
 {
 }
 
-void CubicGraph::updateK(double k)
+void CubicGraph::updateK(double k, ParamsMode mode)
 {
-	cubic()->setK(k);
-	update();
+	cubic()->setK(k, mode);
 }
 
-void CubicGraph::updateV(double v)
+void CubicGraph::updateV(double v, ParamsMode mode)
 {
-	cubic()->setV(v);
-	update();
+	cubic()->setV(v, mode);
 }
 
-void CubicGraph::updateQ(double q)
+void CubicGraph::updateQ(double q, ParamsMode mode)
 {
-	cubic()->setQ(q);
-	update();
+	if (mode == ParamsMode::Geometry)
+		cubic()->setAsymptote(q);
+	else
+		cubic()->setQ(q);
 }
 
 void CubicGraph::draw()
 {
 	std::vector<double> X;
+	auto domain = m_f->domain();
 	//X.push_back(m_f->domain().first);
-	for (double x = m_f->domain().first; x <= m_f->domain().second; x = x + 1e-2)
+	for (double x = domain.first; x <= domain.second; x = x + 1e-2)
 	{
 		//if (m_f->checkDomain(x))
 		X.push_back(x);
@@ -66,4 +67,9 @@ void CubicGraph::draw()
 inline Cubic * CubicGraph::cubic()
 {
 	return dynamic_cast<Cubic*>(m_f);
+}
+
+inline const Cubic * CubicGraph::cubic() const
+{
+	return const_cast<const Cubic *>(dynamic_cast<Cubic*>(m_f));
 }

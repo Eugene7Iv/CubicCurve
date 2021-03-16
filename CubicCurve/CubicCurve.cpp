@@ -15,9 +15,7 @@ CubicCurve::CubicCurve(QWidget *parent) : QMainWindow(parent), m_mode{NONE}
 	connect(m_ui.actionLinear, &QAction::triggered, this, &CubicCurve::onLinearMode);
 	connect(m_ui.actionCubic, &QAction::triggered, this, &CubicCurve::onCubicMode);
 
-	connect(m_ui.paramsWidget, &ParamsWidget::kChanged, m_ui.graphicsView, &ChartView::updateK);
-	connect(m_ui.paramsWidget, &ParamsWidget::qChanged, m_ui.graphicsView, &ChartView::updateQ);
-	connect(m_ui.paramsWidget, &ParamsWidget::vChanged, m_ui.graphicsView, &ChartView::updateV);
+	connect(m_ui.paramsWidget, &ParamsWidget::draw, m_ui.graphicsView, &ChartView::onDraw);
 
 	m_ui.paramsWidget->hide();
 	updateActions();
