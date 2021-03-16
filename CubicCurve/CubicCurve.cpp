@@ -16,6 +16,9 @@ CubicCurve::CubicCurve(QWidget *parent) : QMainWindow(parent), m_mode{NONE}
 	connect(m_ui.paramsWidget, &ParamsWidget::draw, m_ui.graphicsView, &ChartView::onDraw);
 
 	m_ui.paramsWidget->hide();
+
+	m_ui.mainToolBar->insertSeparator(m_ui.actionClear);
+
 	updateActions();
 }
 

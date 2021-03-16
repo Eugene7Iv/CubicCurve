@@ -1,6 +1,9 @@
 <RCC>
-    <qresource prefix="/CubicCurve">
-        <file alias="draw">pencil.png</file>
-        <file alias="changeMode">repeat.png</file>
-    </qresource>
+  <qresource prefix="/CubicCurve">
+    <file alias="reset">reset.png</file>
+    <file alias="clear">eraser.png</file>
+    <file alias="cubic">cubic.PNG</file>
+    <file alias="draw">pencil.png</file>
+    <file alias="changeMode">repeat.png</file>
+  </qresource>
 </RCC>

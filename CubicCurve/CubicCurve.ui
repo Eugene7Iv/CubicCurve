@@ -82,21 +82,42 @@
    </property>
   </action>
   <action name="actionClear">
+   <property name="icon">
+    <iconset resource="CubicCurve.qrc">
+     <normaloff>:/CubicCurve/clear</normaloff>:/CubicCurve/clear</iconset>
+   </property>
    <property name="text">
     <string>Clear</string>
+   </property>
+   <property name="toolTip">
+    <string>Очистить полотно</string>
    </property>
   </action>
   <action name="actionCubic">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="CubicCurve.qrc">
+     <normaloff>:/CubicCurve/cubic</normaloff>:/CubicCurve/cubic</iconset>
+   </property>
    <property name="text">
     <string>Cubic</string>
    </property>
+   <property name="toolTip">
+    <string>Отрисовка кубики</string>
+   </property>
   </action>
   <action name="actionResetZoom">
+   <property name="icon">
+    <iconset resource="CubicCurve.qrc">
+     <normaloff>:/CubicCurve/reset</normaloff>:/CubicCurve/reset</iconset>
+   </property>
    <property name="text">
     <string>resetZoom</string>
+   </property>
+   <property name="toolTip">
+    <string>Сбросить зум</string>
    </property>
   </action>
  </widget>
