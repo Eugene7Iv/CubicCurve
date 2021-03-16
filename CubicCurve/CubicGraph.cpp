@@ -30,10 +30,11 @@ void CubicGraph::updateQ(double q, ParamsMode mode)
 
 void CubicGraph::draw()
 {
+	double eps = 1e-2;
 	std::vector<double> X;
 	auto domain = m_f->domain();
 	//X.push_back(m_f->domain().first);
-	for (double x = domain.first; x <= domain.second - 1e-2; x = x + 1e-2)
+	for (double x = domain.first; x <= domain.second - eps; x = x + eps)
 	{
 		//if (m_f->checkDomain(x))
 		X.push_back(x);
